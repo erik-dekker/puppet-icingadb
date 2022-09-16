@@ -61,6 +61,7 @@ class icingadb(
   Stdlib::Host                         $redis_host        = 'localhost',
   Optional[Stdlib::Port::Unprivileged] $redis_port        = undef,
   Optional[Integer[0]]                 $redis_pool_size   = undef,
+  Optional[String]                     $redis_password    = undef,
   Enum['mysql','pgsql']                $db_type           = 'mysql',
   Stdlib::Host                         $db_host           = 'localhost',
   Optional[Stdlib::Port::Unprivileged] $db_port           = undef,
@@ -70,6 +71,12 @@ class icingadb(
   Boolean                              $import_db_schema  = false,
   Boolean                              $manage_repo       = false,
   Boolean                              $manage_package    = true,
+  IcingaDB::Logging::Level             $logging_level     = 'info',
+  IcingaDB::Logging::Output            $logging_output    = 'console',
+  IcingaDB::Logging::Options           $logging_options   = {},
+  Optional[Integer]                    $history_days      = undef,
+  Optional[Integer]                    $sla_days          = undef,
+  IcingaDB::Retention::Options         $retention_options = {},
 ) {
 
   require ::icingadb::globals

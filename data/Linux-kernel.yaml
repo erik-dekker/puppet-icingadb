@@ -4,6 +4,7 @@ icingadb::globals::user: icingadb
 icingadb::globals::group: icingadb
 icingadb::globals::service_name: icingadb
 icingadb::globals::conf_dir: /etc/icingadb
+icingadb::globals::conf_file: 'config.yml'
 icingadb::globals::mysql_db_schema: /usr/share/icingadb/schema/mysql/mysql.schema.sql
 
 icingadb::redis::globals::package_name: icingadb-redis

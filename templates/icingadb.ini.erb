@@ -1,29 +1,41 @@
-;this file is managed by puppet
+# This is the configuration file for Icinga DB.
+# Managed by Puppet
 
-[redis]
-host="<%= @redis_host %>"
-<% if @redis_port -%>
-port="<%= @redis_port %>"
-<% end -%>
-<% if @redis_pool_size -%>
-pool_size="<%= @redis_pool_size %>"
-<% end -%>
+database:
+  type: <%= @db_type %>
+  host: <%= @db_host %>
+  port: <%= @db_port %>
+  database: <%= @db_name %>
+  user: <%= @db_username %>
+  password: <%= @db_password %>
 
-[<%= @db_type %>]
-host="<%= @db_host %>"
-<% if @db_port -%>
-port="<%= @db_port %>"
-<% end -%>
-database="<%= @db_name %>"
-user="<%= @db_username %>"
-password="<%= @db_password %>"
-<% if @db_max_open_conns -%>
-max_open_conns="<%= @db_max_open_conns %>"
-<% end -%>
+redis:
+  host: <%= @redis_host %>
+  port: <%= @redis_port %>
+  <%- if @redis_password -%>
+  password: <%= @redis_password %>
+  <%- end -%>
 
-[logging]
-level="info"
+logging:
+  level: <%= @logging_level %>
+  output: <%= @logging_output %>
+  <%- if @logging_options -%>
+  options:
+    <%- @logging_options.each do |key,value| -%>
+    <%= key %>: <%= value %>
+    <%- end -%>
+  <%- end -%>
 
-[metrics]
-#host="127.0.0.1"
-#port=8080
+retention:
+  <%- if @history_days -%>
+  history-days: <%= @history_days -%>
+  <%- end -%>
+  <%- if @sla_days -%>
+  sla-days: <%= @sla_days -%>
+  <%- end -%>
+  <%- if not @retention_options.nil? -%>
+  options:
+    <%- @retention_options.each do |key,value| -%>
+    <%= key %>: <%= value %>
+    <%- end -%>
+  <%- end -%>

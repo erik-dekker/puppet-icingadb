@@ -20,6 +20,9 @@
 # @param [Boolean] manage_package
 #   Whether to manage the IcingaDB package. Defaults to `true`.
 #
+# @param [Optional[String]] requirepass
+#   Password required to authenticate with using AUTH.
+#
 # @example
 #   class { '::icingadb::redis':
 #     manage_repo => true,
@@ -34,6 +37,7 @@ class icingadb::redis(
   Stdlib::Port::Unprivileged                $port           = 6380,
   Boolean                                   $manage_repo    = false,
   Boolean                                   $manage_package = true,
+  Optional[String]                          $requirepass    = undef,
 ) {
 
   require ::icingadb::redis::globals

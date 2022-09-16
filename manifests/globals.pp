@@ -11,6 +11,8 @@
 #
 # @param [Stdlib::Absolutepath] conf_dir
 #
+# @param [Stdlib::Absolutepath] conf_file
+#
 # @param [Stdlib::Absolutepath] mysql_db_schema
 #
 class icingadb::globals(
@@ -19,6 +21,7 @@ class icingadb::globals(
   String               $user,
   String               $group,
   Stdlib::Absolutepath $conf_dir,
+  String               $conf_file,
   Stdlib::Absolutepath $mysql_db_schema,
 ) {
 }

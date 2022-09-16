@@ -1,8 +1,8 @@
-# @summary 
+# @summary
 #   Configures IcingaDB Redis server
 #
 # @api private
-#   
+#
 class icingadb::redis::config {
 
   $redis_bin         = $::icinga::redis::globals::redis_bin
@@ -16,6 +16,7 @@ class icingadb::redis::config {
   $service_name      = $::icingadb::redis::globals::service_name
   $bind              = $::icingadb::redis::bind
   $port              = $::icingadb::redis::port
+  $requirepass       = $::icingadb::redis::requirepass
 
   redis::instance { 'icingadb-redis':
     bind                => any2array($bind),
@@ -32,6 +33,7 @@ class icingadb::redis::config {
     log_file            => "${log_dir}/icingadb-redis-server.log",
     unixsocket          => '',
     tcp_keepalive       => lookup('redis::tcp_keepalive', Integer[0], undef, 300),
+    requirepass         => $requirepass,
   }
 
   file { $service_unit_file:
